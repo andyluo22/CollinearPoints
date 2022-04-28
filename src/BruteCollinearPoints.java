@@ -91,6 +91,8 @@ public class BruteCollinearPoints {
         StdDraw.setXscale(0, 32768);
         StdDraw.setYscale(0, 32768);
         for (Point p : points) {
+            StdDraw.setPenRadius(0.005);
+            StdDraw.setPenColor(StdDraw.BLACK);
             p.draw();
         }
         StdDraw.show();
@@ -99,6 +101,8 @@ public class BruteCollinearPoints {
         BruteCollinearPoints collinear = new BruteCollinearPoints(points);
         for (LineSegment segment : collinear.segments()) {
             StdOut.println(segment);
+            StdDraw.setPenRadius();
+            StdDraw.setPenColor(StdDraw.BOOK_BLUE);
             segment.draw();
         }
         StdDraw.show();
