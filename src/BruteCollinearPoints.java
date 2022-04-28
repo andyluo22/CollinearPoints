@@ -12,24 +12,26 @@ public class BruteCollinearPoints {
     private int numOfSegments;
     private ArrayList<LineSegment> segmentsWithTwoEndpoints;
 
-    // finds all line segments containing 4 points using brute force
+    // finds all line segments containing 4 points using brute force running in O(n^4) time
     public BruteCollinearPoints(Point[] points) {
         Point origin = new Point(0, 0);
+        this.segmentsWithTwoEndpoints = new ArrayList<LineSegment>();
 
         for (int i = 0; i < points.length; i++) {
             for (int j = i + 1; j < points.length; j++) {
-                for (int k = j + 1; k < points.length; j++) {
+                for (int k = j + 1; k < points.length; k++) {
                     for (int l = k + 1; l < points.length; l++) {
                         Double slope1 = points[i].slopeTo(points[j]);
                         Double slope2 = points[i].slopeTo(points[k]);
                         Double slope3 = points[i].slopeTo(points[l]);
 
-                        if (slope1 == slope2 && slope2 == slope3) { //we are using equivalent relations here specifically transitivity Math 220
+                        if (slope1.equals(slope2) && slope2.equals(slope3)) { //we are using equivalent relations here specifically transitivity Math 220
                             Double slope1ToOrigin = origin.slopeTo(points[i]);
                             Double slope2ToOrigin = origin.slopeTo(points[j]);
                             Double slope3ToOrigin = origin.slopeTo(points[k]);
                             Double slope4ToOrigin = origin.slopeTo(points[l]);
 
+                            //MAYBE USE A HASHMAP FOR THIS to reduce memory storage if I have time
                             ArrayList<Point> storePoints = new ArrayList<Point>();
                             storePoints.add(points[i]);
                             storePoints.add(points[j]);
@@ -37,7 +39,6 @@ public class BruteCollinearPoints {
                             storePoints.add(points[l]);
 
                             ArrayList<Double> storeSlopes = new ArrayList<Double>();
-
                             storeSlopes.add(slope1ToOrigin);
                             storeSlopes.add(slope2ToOrigin);
                             storeSlopes.add(slope3ToOrigin);
@@ -45,7 +46,6 @@ public class BruteCollinearPoints {
 
                             Double max = Collections.max(storeSlopes);
                             Double min = Collections.min(storeSlopes);
-
                             int maxIndex = storeSlopes.indexOf(max);
                             int minIndex = storeSlopes.indexOf(min);
 
@@ -77,7 +77,7 @@ public class BruteCollinearPoints {
 
     public static void main(String[] args) {
         // read the n points from a file
-        In in = new In(args[0]);
+        In in = new In("input200.txt");
         int n = in.readInt();
         Point[] points = new Point[n];
         for (int i = 0; i < n; i++) {
@@ -96,7 +96,7 @@ public class BruteCollinearPoints {
         StdDraw.show();
 
         // print and draw the line segments
-        FastCollinearPoints collinear = new FastCollinearPoints(points);
+        BruteCollinearPoints collinear = new BruteCollinearPoints(points);
         for (LineSegment segment : collinear.segments()) {
             StdOut.println(segment);
             segment.draw();
