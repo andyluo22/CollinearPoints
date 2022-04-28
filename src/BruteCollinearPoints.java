@@ -31,7 +31,7 @@ public class BruteCollinearPoints {
                             Double slope3ToOrigin = origin.slopeTo(points[k]);
                             Double slope4ToOrigin = origin.slopeTo(points[l]);
 
-                            //MAYBE USE A HASHMAP FOR THIS to reduce memory storage if I have time
+                            //MAYBE USE A HASHMAP FOR THIS to reduce memory storage if I have time but it really shouldn't matter since big N notation
                             ArrayList<Point> storePoints = new ArrayList<Point>();
                             storePoints.add(points[i]);
                             storePoints.add(points[j]);
