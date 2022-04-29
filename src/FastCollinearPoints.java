@@ -34,9 +34,11 @@ public class FastCollinearPoints {
             int right = 1; // we start at all non invoking points
             int left = 1;
 
-            while (right < points.length) { // one less element in sorted array
+            while (right + 1 < points.length) { // one less element in sorted array
+                Double slope1 = points[i].slopeTo(copy[right]);
+                Double slope2 = points[i].slopeTo(copy[right + 1]);
 
-                if (points[i].slopeTo(copy[right]) == points[i].slopeTo(copy[right + 1])) {
+                if (slope1.equals(slope2)) {
                     Double slope1ToOrigin = origin.slopeTo(copy[right]);
                     Double slope2ToOrigin = origin.slopeTo(copy[right + 1]);
 
@@ -62,8 +64,10 @@ public class FastCollinearPoints {
                         Point max = slopeEndPoint1 > slopeEndPoint2 ? endpoint1 : endpoint2;
                         Point min = slopeEndPoint1 < slopeEndPoint2 ? endpoint1 : endpoint2;
 
-                        LineSegment line = new LineSegment(min, max);
-                        noDuplicateLines.add(line);
+                        if(!min.equals(max)) {
+                            LineSegment line = new LineSegment(min, max);
+                            noDuplicateLines.add(line);
+                        }
                     }
                     left = right + 1;
                 }
@@ -86,19 +90,9 @@ public class FastCollinearPoints {
         return lineSegments;
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
     public static void main(String[] args) {
         // read the n points from a file
-        In in = new In("input8.txt");
+        In in = new In("input.txt");
         int n = in.readInt();
         Point[] points = new Point[n];
         for (int i = 0; i < n; i++) {

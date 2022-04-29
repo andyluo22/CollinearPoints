@@ -53,14 +53,16 @@ public class LineSegment {
     }
 
     /**
-     * Throws an exception if called. The hashCode() method is not supported because
-     * hashing has not yet been introduced in this course. Moreover, hashing does not
-     * typically lead to good *worst-case* performance guarantees, as required on this
-     * assignment.
+     * Returns a HashCode for this line segment.
      *
      * @throws UnsupportedOperationException if called
      */
     public int hashCode() {
-        throw new UnsupportedOperationException("hashCode() is not supported");
+        int result = 7;
+
+        result = 5 * result + this.p.hashCode();
+        result = 5 * result + this.q.hashCode();
+
+        return result;
     }
 }
