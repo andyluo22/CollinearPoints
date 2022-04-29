@@ -60,11 +60,11 @@ public class FastCollinearPoints {
                     }
 
                 } else {
-                    if ((right - left + 1) >= 3 && copy[right + 1] != copy[right]) {
+                    if ((right - left + 1) >= 3) {
                         Point max = slopeEndPoint1 > slopeEndPoint2 ? endpoint1 : endpoint2;
                         Point min = slopeEndPoint1 < slopeEndPoint2 ? endpoint1 : endpoint2;
 
-                        if(!min.equals(max)) {
+                        if (!min.equals(max)) {
                             LineSegment line = new LineSegment(min, max);
                             noDuplicateLines.add(line);
                         }
@@ -73,6 +73,15 @@ public class FastCollinearPoints {
                 }
 
                 right++;
+            }
+            if ((right - left + 1) >= 3) {
+                Point max = slopeEndPoint1 > slopeEndPoint2 ? endpoint1 : endpoint2;
+                Point min = slopeEndPoint1 < slopeEndPoint2 ? endpoint1 : endpoint2;
+
+                if (!min.equals(max)) {
+                    LineSegment line = new LineSegment(min, max);
+                    noDuplicateLines.add(line);
+                }
             }
         }
     }
@@ -90,9 +99,20 @@ public class FastCollinearPoints {
         return lineSegments;
     }
 
+    private void addLineSegmentToSet(HashSet<LineSegment> set, Double slopeEndPoint1,
+                                     Double slopeEndPoint2, Point endpoint1, Point endpoint2) {
+        Point max = slopeEndPoint1 > slopeEndPoint2 ? endpoint1 : endpoint2;
+        Point min = slopeEndPoint1 < slopeEndPoint2 ? endpoint1 : endpoint2;
+
+        if (!min.equals(max)) {
+            LineSegment line = new LineSegment(min, max);
+            set.add(line);
+        }
+    }
+
     public static void main(String[] args) {
         // read the n points from a file
-        In in = new In("input.txt");
+        In in = new In("input400.txt");
         int n = in.readInt();
         Point[] points = new Point[n];
         for (int i = 0; i < n; i++) {
