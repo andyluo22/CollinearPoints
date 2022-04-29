@@ -61,13 +61,7 @@ public class FastCollinearPoints {
 
                 } else {
                     if ((right - left + 1) >= 3) {
-                        Point max = slopeEndPoint1 > slopeEndPoint2 ? endpoint1 : endpoint2;
-                        Point min = slopeEndPoint1 < slopeEndPoint2 ? endpoint1 : endpoint2;
-
-                        if (!min.equals(max)) {
-                            LineSegment line = new LineSegment(min, max);
-                            noDuplicateLines.add(line);
-                        }
+                        addLineSegmentToSet(noDuplicateLines,slopeEndPoint1,slopeEndPoint2,endpoint1,endpoint2);
                     }
                     left = right + 1;
                 }
@@ -75,13 +69,7 @@ public class FastCollinearPoints {
                 right++;
             }
             if ((right - left + 1) >= 3) {
-                Point max = slopeEndPoint1 > slopeEndPoint2 ? endpoint1 : endpoint2;
-                Point min = slopeEndPoint1 < slopeEndPoint2 ? endpoint1 : endpoint2;
-
-                if (!min.equals(max)) {
-                    LineSegment line = new LineSegment(min, max);
-                    noDuplicateLines.add(line);
-                }
+                addLineSegmentToSet(noDuplicateLines,slopeEndPoint1,slopeEndPoint2,endpoint1,endpoint2);
             }
         }
     }
@@ -99,7 +87,7 @@ public class FastCollinearPoints {
         return lineSegments;
     }
 
-    private void addLineSegmentToSet(HashSet<LineSegment> set, Double slopeEndPoint1,
+    private void addLineSegmentToSet(Set<LineSegment> set, Double slopeEndPoint1,
                                      Double slopeEndPoint2, Point endpoint1, Point endpoint2) {
         Point max = slopeEndPoint1 > slopeEndPoint2 ? endpoint1 : endpoint2;
         Point min = slopeEndPoint1 < slopeEndPoint2 ? endpoint1 : endpoint2;
