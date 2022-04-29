@@ -15,8 +15,11 @@ public class FastCollinearPoints {
     private LineSegment[] lineSegments;
     private Set<LineSegment> noDuplicateLines;
 
-    // finds all line segments containing 4 or more points
-    // Use mergeSort algorithm and comparator object to run in time complexity of n^2log(n) max time and space proportional to O(n) so just don't use O(m)
+    /**
+     * Examines an unconstrained number of euclidean points and checks whether they lie on the same line segment.
+     * Does not include repeated subsegments.
+     * @param points the euclidean points to be analyzed
+     */
     public FastCollinearPoints(Point[] points) {
         Point[] copy = Arrays.copyOf(points, points.length);
         Point origin = new Point(0, 0);
@@ -64,7 +67,6 @@ public class FastCollinearPoints {
                     }
                     left = right + 1;
                 }
-
                 right++;
             }
             if ((right - left + 1) >= 3) {
@@ -73,12 +75,20 @@ public class FastCollinearPoints {
         }
     }
 
-    // the number of line segments
+    /**
+     * Determines the number of distinct line segments composed of 4 or
+     * more euclidean points that span a line
+     * @return the number of distinct line segments
+     */
     public int numberOfSegments() {
         return noDuplicateLines.size();
     }
 
-    // the line segments
+    /**
+     * Holds the distinct line segments that are composed of 4 or
+     * more euclidean points
+     * @return the distinct line segments
+     */
     public LineSegment[] segments() {
         LineSegment[] lineSegments = new LineSegment[this.numOfSegments];
         lineSegments = noDuplicateLines.toArray(new LineSegment[0]);
@@ -86,6 +96,14 @@ public class FastCollinearPoints {
         return lineSegments;
     }
 
+    /**
+     *
+     * @param set the set of distinct collinear line segments
+     * @param slopeEndPoint1 the slope of the first endpoint of the collinear line
+     * @param slopeEndPoint2 the slope of the second endpoint of the collinear line
+     * @param endpoint1 the endpoint corresponding to the first slope
+     * @param endpoint2 the endpoint corresponding to the second slope
+     */
     private void addLineSegmentToSet(Set<LineSegment> set, Double slopeEndPoint1,
                                      Double slopeEndPoint2, Point endpoint1, Point endpoint2) {
         Point max = slopeEndPoint1 > slopeEndPoint2 ? endpoint1 : endpoint2;
@@ -99,7 +117,7 @@ public class FastCollinearPoints {
 
     public static void main(String[] args) {
         // read the n points from a file
-        In in = new In("input400.txt");
+        In in = new In("input10000.txt");
         int n = in.readInt();
         Point[] points = new Point[n];
         for (int i = 0; i < n; i++) {

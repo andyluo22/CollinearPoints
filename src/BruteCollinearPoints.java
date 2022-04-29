@@ -12,7 +12,11 @@ public class BruteCollinearPoints {
     private int numOfSegments;
     private ArrayList<LineSegment> segmentsWithTwoEndpoints;
 
-    // finds all line segments containing 4 points using brute force running in O(n^4) time
+    /**
+     * Examines only four euclidean points simultaneously and checks whether they lie on the same line segment.
+     * Does not include repeated subsegments.
+     * @param points euclidean points to be examined
+     */
     public BruteCollinearPoints(Point[] points) {
         Point origin = new Point(0, 0);
         this.segmentsWithTwoEndpoints = new ArrayList<LineSegment>();
@@ -59,12 +63,20 @@ public class BruteCollinearPoints {
         }
     }
 
-    // the number of line segments
+    /**
+     * Determines the number of distinct line segments composed of 4 or
+     * more euclidean points that span a line
+     * @return the number of distinct line segments
+     */
     public int numberOfSegments() {
         return this.numOfSegments;
     }
 
-    // the line segments
+    /**
+     * Holds the distinct line segments that are composed of 4 or
+     * more euclidean points
+     * @return the distinct line segments
+     */
     public LineSegment[] segments() {
         LineSegment[] lineSegments = new LineSegment[this.numOfSegments];
 
@@ -77,7 +89,7 @@ public class BruteCollinearPoints {
 
     public static void main(String[] args) {
         // read the n points from a file
-        In in = new In("input400.txt");
+        In in = new In("input10000.txt");
         int n = in.readInt();
         Point[] points = new Point[n];
         for (int i = 0; i < n; i++) {
