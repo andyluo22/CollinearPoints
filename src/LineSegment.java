@@ -55,7 +55,7 @@ public class LineSegment {
     /**
      * Returns a HashCode for this line segment.
      *
-     * @throws UnsupportedOperationException if called
+     * @return an int representation of this line segment
      */
     public int hashCode() {
         int result = 7;

@@ -1,7 +1,6 @@
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
-//problem fix the stupid hashcode and HashSet I'm using maybe read MIT COURSE on that :(((
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashSet;
