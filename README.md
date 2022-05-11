@@ -5,7 +5,7 @@ One of the challenges in computer vision is analyzing the patterns in computer i
 
 ![image](https://user-images.githubusercontent.com/68613171/167939564-4be47e15-85d3-415c-b115-9e2d13da3014.png)
 
-**Figure 1:**  _Demonstrates the function of the program.  Through analyzing a set of euclidean data points, line segments are formed cleanly._
+**Figure 1:**  _Demonstrates the function of the program.  Through analyzing a set of euclidean data points, line segments are formed given that a set of three or more points are collinear._
 
 ## Significance
 
