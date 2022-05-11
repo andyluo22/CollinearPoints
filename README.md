@@ -21,5 +21,5 @@ The elegant approach implemented in the **FastCollinearPoints** class analyzes e
 The time complexity is proportional to **O(n<sup>2</sup> log n)**.  The space complexity is also done ~ **O(n)**.
 
 ### Learning Outcome :books:
-A big learning outcome from this project was holding each object created to be immutable.  Something to consider in future projects is to always avoid deep-copying array objects.  Despite taking up more space, this does not jeopardize mutating the instances or representation invariants of the objects - which leads to easier debugging and less errors in code.
+A big learning outcome from this project was holding each object created to be **immutable**.  Something to consider in future projects is to always avoid **deep-copying** array objects.  Despite taking up more space, this does not jeopardize mutating the instances or representation invariants of the objects - which leads to easier debugging and less errors in code.
 
