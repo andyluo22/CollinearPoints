@@ -8,4 +8,4 @@ One of the challenges in computer vision is analyzing the patterns in computer i
 **Figure 1:**  _Demonstrates the function of the program.  Through analyzing a set of euclidean data points, line segments are formed given that a set of four or more points are collinear._
 
 ## Significance
-
+The main challenges of writing a program is understanding how to implement comparable data types and comparator instances.  Since the time complexity, rather than space complexity contributes to the main bottleneck source in the program, the performance when analyzing huge sets of points like 10000 must be of growth order O(n<sup>2</sup> log n) time.
