@@ -1,0 +1,6 @@
+# CollinearPoints
+
+## The Problem
+
+## Significance
+
