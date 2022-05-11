@@ -17,7 +17,7 @@ The elegant approach implemented in the **FastCollinearPoints** class analyzes e
 
 **Figure 2:**  _The diagram above shows a valid line segment as 4 points are shown to have a slope of 1.  The sliding window approach would slide through to detect this set of points and keep moving if more sets of points have the same slope._
 
-#### Performance :chart_with_upwards_trend: :stopwatch:
+### Performance :chart_with_upwards_trend: :stopwatch:
 The time complexity is proportional to **O(n<sup>2</sup> log n)**.  The space complexity is also done ~ **O(n)**.
 
 
